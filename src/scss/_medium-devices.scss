@@ -1,0 +1,31 @@
+@media screen and (min-width: 500px) {
+  .navbar {
+    padding: 36px 55px;
+  }
+
+  .search {
+    width: 90%;
+  }
+
+  .container {
+    width: 350px;
+  }
+}
+
+@media screen and (min-width: 700px) {
+  html {
+    font-size: 18px;
+  }
+
+  .navbar {
+    padding: 36px 120px;
+  }
+
+  .container {
+    width: 380px;
+  }
+
+  .today__description {
+    margin-top: -14px;
+  }
+}
