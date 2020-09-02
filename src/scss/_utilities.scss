@@ -21,6 +21,36 @@
   color: $primary-color;
 }
 
+// states
+a:hover {
+  color: $state-color;
+}
+
+a:focus {
+  text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+.btn:focus {
+  border: 2px solid #4dabf7;
+  outline: none;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.0125), 0 0 8px rgba(34, 139, 230, 0.5);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.0125), 0 0 8px rgba(34, 139, 230, 0.5);
+}
+
+a:active {
+  color: $state-color;
+}
+
+input:active,
+.btn:active {
+  color: $state-color;
+  outline: none;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.0125), 0 0 8px rgba(34, 139, 230, 0.5);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.0125), 0 0 8px rgba(34, 139, 230, 0.5);
+}
+
 // backgrounds
 .bg {
   &-primary {
@@ -48,17 +78,28 @@
   border: none;
   cursor: pointer;
   font-size: 1rem;
+  border-radius: 5px;
+  padding: 2px;
   margin-right: 0.5rem;
-  transition: all 0.5s ease-in;
+  transition: color 0.5s ease-in;
+  outline: none;
 
-  &.btn-primary {
+  &--big {
+    font-size: 30px;
+  }
+
+  &--small {
+    font-size: 20px;
+  }
+
+  &.btn--primary {
     @include set-background($primary-color);
     &:hover {
       color: lighten($primary-color, 5%);
     }
   }
-  &.btn-dark {
-    @include set-background($dark-color);
+  &.btn--dark {
+    @include set-background($secondary-color);
     &:hover {
       color: lighten($dark-color, 5%);
     }

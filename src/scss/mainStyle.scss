@@ -23,6 +23,11 @@ body {
   color: #333;
 }
 
+a {
+  text-decoration: none;
+  color: $primary-color;
+}
+
 // navbar
 .navbar {
   width: 100%;
@@ -49,13 +54,10 @@ body {
     width: 175px;
     margin-bottom: 15px;
   }
-
-  .saved-btn {
-    font-size: 30px;
-    // width: 12%;
-    color: $primary-color;
-    margin-right: auto;
-  }
+}
+.saved-btn {
+  color: $primary-color;
+  margin-right: auto;
 }
 
 // main
