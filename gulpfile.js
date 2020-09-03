@@ -40,6 +40,7 @@ const srcFiles = {
   scssPagesPath: 'src/scss/pagesStyles/**/*.scss',
   scssPath: 'src/scss/**/*.scss',
   jsPath: 'src/js/*.js',
+  jsFilesPath: 'src/js/modules/**/*.js',
   htmlPath: 'src/pages/**/*.html',
   imagesPath: 'src/images/*',
   indexPath: './index.html',
@@ -224,7 +225,7 @@ function watchTask() {
   // list srcFiles we need to watch
   // watch(files to watch, tasks to run when changes occurs)
   watch([srcFiles.scssPath, srcFiles.mainScssPath], series(scssTask, cacheBustTask));
-  watch(srcFiles.jsPath, series(jsTask, cacheBustTask, reload));
+  watch([srcFiles.jsPath, srcFiles.jsFilesPath], series(jsTask, cacheBustTask, reload));
   //watch changes in root index.html
   watch(srcFiles.indexPath, series(initIndexHtml, reload));
   // watch for changes in html pages
