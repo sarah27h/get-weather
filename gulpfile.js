@@ -28,11 +28,18 @@ const imagemin = require('gulp-imagemin');
 const imageminPngquant = require('imagemin-pngquant');
 const fileExists = require('file-exists');
 
+// enable using es6 modules in browser
+// need using bundle like rollup
+const rollup = require('gulp-better-rollup'); // to use ES6 imports and exports in code
+const rollupBabel = require('rollup-plugin-babel');
+const resolve = require('rollup-plugin-node-resolve'); // to use third party modules in node_modules/
+const commonjs = require('rollup-plugin-commonjs'); // converts CommonJS modules to ES6s
+
 const srcFiles = {
   mainScssPath: 'src/scss/**/mainStyle.scss',
   scssPagesPath: 'src/scss/pagesStyles/**/*.scss',
   scssPath: 'src/scss/**/*.scss',
-  jsPath: 'src/js/**/*.js',
+  jsPath: 'src/js/*.js',
   htmlPath: 'src/pages/**/*.html',
   imagesPath: 'src/images/*',
   indexPath: './index.html',
@@ -109,6 +116,14 @@ function jsTask() {
       // To load existing source maps
       // This will cause sourceMaps to use the previous sourcemap to create an ultimate sourcemap
       .pipe(gulpif(!production, sourcemaps.init({ loadMaps: true })))
+      .pipe(
+        rollup(
+          {
+            plugins: [rollupBabel(), resolve(), commonjs()]
+          },
+          'umd'
+        )
+      )
       .pipe(
         gulpif(
           production,
