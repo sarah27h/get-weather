@@ -5,4 +5,4 @@ dist/
 package-lock.json
 
 # api keys
-src/config/config.js
+config/config.js
