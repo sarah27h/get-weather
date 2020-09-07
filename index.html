@@ -8,7 +8,7 @@
       href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap"
       rel="stylesheet"
     />
-    <link href="css/mainStyle.css?t=1599006840411" rel="stylesheet" />
+    <link href="css/mainStyle.css?t=1599442451307" rel="stylesheet" />
     <title>Start Project...</title>
   </head>
   <body>
@@ -26,6 +26,7 @@
         <div class="search__item">
           <!-- <label for="hearder_search">Search places...</label> -->
           <input
+            id="autocomplete-search"
             class="search__input"
             type="search"
             name="hearder_search"
@@ -33,12 +34,8 @@
             autofocus
           />
 
-          <button class="btn--small search__btn btn" type="submit">
+          <!-- <button class="btn--small search__btn btn" type="submit">
             <i class="fas fa-search-location"></i>
-          </button>
-
-          <!-- <button class="btn--small search__close btn not-visible" type="button">
-            <i class="fas fa-times-circle"></i>
           </button> -->
         </div>
       </form>
@@ -47,29 +44,36 @@
 
     <!-- start main -->
     <main class="container">
-      <h2 class="location"><i class="fas fa-map-marker-alt"></i> Paris, France</h2>
+      <h2 class="location">
+        <i class="location__icon fas fa-map-marker-alt"></i> <span id="location-info"></span>
+      </h2>
 
       <!-- start days-predict -->
       <section class="days-predict">
         <div class="day">
           <p class="day__name">Tomorrow</p>
-          <img class="day__img" src="http://openweathermap.org/img/wn/03n@2x.png" />
-          <p class="day__temp">25<sup>o</sup></p>
+          <img class="day__img" src="" />
+          <p><span class="day__temp"></span><sup>o</sup></p>
         </div>
         <div class="day">
           <p class="day__name">Sat.</p>
-          <img class="day__img" src="http://openweathermap.org/img/wn/02d@2x.png" />
-          <p class="day__temp">25<sup>o</sup></p>
+          <img class="day__img" src="" />
+          <p><span class="day__temp"></span><sup>o</sup></p>
         </div>
         <div class="day">
           <p class="day__name">Sun.</p>
-          <img class="day__img" src="http://openweathermap.org/img/wn/01d@2x.png" />
-          <p class="day__temp">25<sup>o</sup></p>
+          <img class="day__img" src="" />
+          <p><span class="day__temp"></span><sup>o</sup></p>
         </div>
         <div class="day">
           <p class="day__name">Mon.</p>
-          <img class="day__img" src="http://openweathermap.org/img/wn/02d@2x.png" />
-          <p class="day__temp">25<sup>o</sup></p>
+          <img class="day__img" src="" />
+          <p><span class="day__temp"></span><sup>o</sup></p>
+        </div>
+        <div class="day">
+          <p class="day__name">Mon.</p>
+          <img class="day__img" src="" />
+          <p><span class="day__temp"></span><sup>o</sup></p>
         </div>
       </section>
       <!-- end days-predict -->
@@ -77,10 +81,10 @@
       <!-- start today-temp -->
       <section class="today">
         <!-- <h3 class="today__title">Today</h3> -->
-        <p class="today__temp">25<sup>o</sup></p>
+        <p><span class="today__temp"></span><sup class="today__sup">o</sup></p>
         <div class="today__info">
-          <img class="today__img" src="http://openweathermap.org/img/wn/02d@2x.png" />
-          <p class="today__description">Sunny</p>
+          <img class="today__img" src="" alt="" />
+          <p class="today__description"></p>
         </div>
       </section>
       <!-- end today-temp -->
@@ -88,15 +92,15 @@
       <!-- start today-data -->
       <section class="condition">
         <div class="condition__data">
-          <p>8km/h</p>
+          <p><span class="condition__text"></span>km/h</p>
           <p>Wind</p>
         </div>
         <div class="condition__data">
-          <p>77%</p>
+          <p><span class="condition__text"></span>%</p>
           <p>Humdity</p>
         </div>
         <div class="condition__data">
-          <p>33</p>
+          <p><span class="condition__text"></span>hPa</p>
           <p>pressure</p>
         </div>
       </section>
@@ -108,12 +112,12 @@
     <footer role="contentinfo" class="footer">
       <p>
         Copyright © <img class="footer__logo" src="images/logo.svg" alt="Get Weather Logo" /> - data
-        sources/APIs used
-        <a href="https://openweathermap.org/appid#use"> OpenWeatherMap API</a>
+        sources/APIs used <a href="https://openweathermap.org/appid#use"> OpenWeatherMap API</a> &
+        <a href="https://github.com/algolia/places">Algolia Places</a>
       </p>
     </footer>
     <!-- end footer -->
-
-    <script src="js/all.js?t=1599006840411"></script>
+    <script src="https://cdn.jsdelivr.net/npm/places.js@1.19.0"></script>
+    <script type="module" src="js/all.js?t=1599442451307"></script>
   </body>
 </html>

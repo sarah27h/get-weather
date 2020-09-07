@@ -96,6 +96,7 @@ main {
     align-items: center;
     line-height: 0.9;
     font-size: 0.9rem;
+    color: $primary-color;
 
     &__name {
       color: $secondary-color;
@@ -105,12 +106,8 @@ main {
       width: 40px;
     }
 
-    &__temp {
-      color: $primary-color;
-
-      sup {
-        font-size: 0.7rem;
-      }
+    sup {
+      font-size: 0.7rem;
     }
   }
 }
@@ -138,11 +135,11 @@ main {
     font-size: 5.5rem;
     font-weight: 700;
     color: $primary-color;
-
-    sup {
-      font-size: 1.3rem;
-      vertical-align: text-top;
-    }
+  }
+  &__sup {
+    font-weight: 700;
+    font-size: 1.3rem;
+    vertical-align: top;
   }
 
   &__description {
@@ -162,13 +159,13 @@ main {
   font-size: 0.9rem;
 
   &__data {
+    :last-child {
+      color: $secondary-color;
+    }
+
     :first-child {
       color: $primary-color;
       font-weight: 700;
-    }
-
-    :last-child {
-      color: $secondary-color;
     }
   }
 }
