@@ -24,7 +24,7 @@ const displayWeatherData = data => {
     }
     dayChildern[1].setAttribute(
       'src',
-      `http://openweathermap.org/img/wn/${dayData.weather[0].icon}@2x.png`
+      `https://openweathermap.org/img/wn/${dayData.weather[0].icon}@2x.png`
     );
     dayTemp[i].textContent = dayData.temp.day.toFixed();
   });
@@ -34,7 +34,7 @@ const displayWeatherData = data => {
   todayDescription.textContent = data.current.weather[0].main;
   todayImg.setAttribute(
     'src',
-    `http://openweathermap.org/img/wn/${data.current.weather[0].icon}@2x.png`
+    `https://openweathermap.org/img/wn/${data.current.weather[0].icon}@2x.png`
   );
 
   // display today conditions
