@@ -8,7 +8,9 @@ const clearOldWeatherData = () => {
 
   // last result date is not the same day as date of our first weather data
   if (lastResult.current.dt - dt >= DIFFERENCE_BETWEEN_2TODAYS) {
-    localStorage.weatherData = JSON.stringify(lastResult);
+    localStorage.removeItem('weatherData');
+    localStorage.removeItem('dt');
+    localStorage.weatherData = JSON.stringify([lastResult]);
     localStorage.dt = JSON.stringify(lastResult.current.dt);
     console.log('remove old results ....');
   }
