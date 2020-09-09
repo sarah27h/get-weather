@@ -1,5 +1,6 @@
 import fetchTempData from './fetchTemp.js';
 import showMessage from './showMessages';
+import { displayWeatherData } from './displayWeatherData';
 
 const options = {
   enableHigh1accuracy: true,
@@ -7,51 +8,72 @@ const options = {
   maximumAge: 2000
 };
 
+const defaultCoords = {
+  lat: 40.71,
+  lng: -74.01
+};
+
+let searchResult;
+
 const getUserLocation = () => {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(
-      position => {
-        console.log(position);
-        if (position.coords.latitude !== undefined && position.coords.longitude !== undefined) {
-          fetchTempData(position.coords.latitude, position.coords.longitude);
-        }
-      },
-      error => {
-        console.log(error);
-        switch (error.code) {
-          case 0: //unknown error
-            showMessage(error.message);
-            fetchTempData(40.71, -74.01);
+  // check localStorage not empty
+  //  if true display last result from it
+  if (localStorage.weatherData !== undefined) {
+    searchResult = [...JSON.parse(localStorage.weatherData)];
 
-            console.log(error.message);
-            break;
+    // last fetched result
+    let lastResult = searchResult[searchResult.length - 1];
 
-          case 1: // permission denied
-            showMessage(error.message);
-            fetchTempData(40.71, -74.01);
+    displayWeatherData(lastResult);
+    showMessage(lastResult.timezone);
 
-            console.log(error.message);
-            break;
-
-          case 2: // position unavailable
-            showMessage(error.message);
-            fetchTempData(40.71, -74.01);
-
-            console.log(error.message);
-            break;
-
-          case 3: // time out
-            showMessage(error.message);
-            fetchTempData(40.71, -74.01);
-
-            console.log(error.message);
-            break;
-        }
-      },
-      options
-    );
+    // if false check for user location if not
+    // fetch weather for default location
   } else {
-    fetchTempData(40.71, -74.01);
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        position => {
+          console.log(position);
+          if (position.coords.latitude !== undefined && position.coords.longitude !== undefined) {
+            fetchTempData(position.coords.latitude, position.coords.longitude);
+          }
+        },
+        error => {
+          console.log(error);
+          switch (error.code) {
+            case 0: //unknown error
+              showMessage(error.message);
+              fetchTempData(defaultCoords.lat, defaultCoords.lng);
+
+              console.log(error.message);
+              break;
+
+            case 1: // permission denied
+              // showMessage(error.message);
+              showMessage('Loading....');
+              fetchTempData(defaultCoords.lat, defaultCoords.lng);
+
+              console.log(error.message);
+              break;
+
+            case 2: // position unavailable
+              showMessage(error.message);
+              fetchTempData(defaultCoords.lat, defaultCoords.lng);
+
+              console.log(error.message);
+              break;
+
+            case 3: // time out
+              showMessage(error.message);
+              fetchTempData(defaultCoords.lat, defaultCoords.lng);
+
+              console.log(error.message);
+              break;
+          }
+        },
+        options
+      );
+    }
   }
 };
 
