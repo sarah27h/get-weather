@@ -6,16 +6,10 @@ import { clearOldWeatherData } from './localStorage';
 let searchResult = [];
 
 const fetchTempData = (lat, lng) => {
+  const url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lng}&exclude=hourly,minutely&units=metric&appid=${WEATHER_API_KEY}`;
   clearWeatherData();
   try {
-    // const response = await fetch(
-    //   `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lng}&exclude=hourly,minutely&units=metric&appid=${WEATHER_API_KEY}`
-    // );
-    // const result = await response.json();
-    // console.log(result);
-    fetch(
-      `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lng}&exclude=hourly,minutely&units=metric&appid=${WEATHER_API_KEY}`
-    )
+    fetch(url)
       .then(response => response.json())
       .then(result => {
         console.log(result);
