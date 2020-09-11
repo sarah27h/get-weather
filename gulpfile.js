@@ -46,7 +46,8 @@ const srcFiles = {
   indexPath: './index.html',
   webFontsPath: './node_modules/@fortawesome/fontawesome-free/webfonts/*',
   faviconPath: './favicon.ico',
-  manifestPath: './manifest.json'
+  manifestPath: './manifest.json',
+  swPath: './sw.js'
 };
 
 const distFiles = {
@@ -98,6 +99,10 @@ function copyImagesTask() {
 
 function copyFaviconManifest() {
   return src([srcFiles.faviconPath, srcFiles.manifestPath]).pipe(dest(distFiles.distPath));
+}
+
+function copySW() {
+  return src([srcFiles.swPath]).pipe(dest(distFiles.distPath));
 }
 
 // Sass task: compiles the Scss files into CSS
@@ -232,13 +237,20 @@ function watchTask() {
   // watch(files to watch, tasks to run when changes occurs)
   watch([srcFiles.scssPath, srcFiles.mainScssPath], series(scssTask, cacheBustTask));
   watch([srcFiles.jsPath, srcFiles.jsFilesPath], series(jsTask, cacheBustTask, reload));
+
   //watch changes in root index.html
   watch(srcFiles.indexPath, series(initIndexHtml, reload));
+
   // watch for changes in html pages
   watch(srcFiles.htmlPath, series(copyHTMLTask, reload));
+
   //watch changes for dist/index.html
   watch('./dist/index.html', reload);
   watch(srcFiles.imagesPath, series(images, reload));
+
+  // watch changes in sw file
+  watch(srcFiles.swPath, series(copySW, reload));
+
   // when making a change in html, js we need browser to refresh
   // watch(srcFiles.jsPath).on('change', browserSync.reload);
   // watch(srcFiles.htmlPath).on('change', browserSync.reload);
@@ -255,6 +267,7 @@ exports.default = series(
     copyHTMLTask,
     copyImagesTask,
     copyFaviconManifest,
+    copySW,
     copyfontawesomeWebfontsTask
   ),
   cacheBustTask,
@@ -273,6 +286,7 @@ exports.build = series(
     copyHTMLTask,
     copyImagesTask,
     copyFaviconManifest,
+    copySW,
     copyfontawesomeWebfontsTask
   )
 );
