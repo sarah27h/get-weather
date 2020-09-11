@@ -28,6 +28,28 @@ a {
   color: $primary-color;
 }
 
+// a hack to support landmark in old browsers
+header,
+nav,
+main,
+footer,
+article,
+section,
+aside {
+  display: block;
+}
+
+// hide label only visually for A11y purposes
+.visually-hidden {
+  border: 0;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  margin: -1px;
+  position: absolute;
+}
+
 // navbar
 .navbar {
   width: 100%;
@@ -177,7 +199,7 @@ main {
   text-align: center;
   margin: auto;
   border-top: 1px solid #ccc;
-  color: #9d9d9d;
+  color: $secondary-color;
   font-size: 12px;
 
   &__logo {

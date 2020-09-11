@@ -26,6 +26,7 @@ const displayWeatherData = data => {
       'src',
       `https://openweathermap.org/img/wn/${dayData.weather[0].icon}@2x.png`
     );
+    dayChildern[1].setAttribute('alt', `${dayData.weather[0].description}`);
     dayTemp[i].textContent = dayData.temp.day.toFixed();
   });
 
@@ -36,6 +37,7 @@ const displayWeatherData = data => {
     'src',
     `https://openweathermap.org/img/wn/${data.current.weather[0].icon}@2x.png`
   );
+  todayImg.setAttribute('alt', `${data.current.weather[0].description}`);
 
   // display today conditions
   const conditions = [data.current.wind_speed, data.current.humidity, data.current.pressure];
