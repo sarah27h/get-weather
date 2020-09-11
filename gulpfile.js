@@ -42,10 +42,11 @@ const srcFiles = {
   jsPath: 'src/js/*.js',
   jsFilesPath: 'src/js/modules/**/*.js',
   htmlPath: 'src/pages/**/*.html',
-  imagesPath: 'src/images/*',
+  imagesPath: 'src/images/**/*',
   indexPath: './index.html',
   webFontsPath: './node_modules/@fortawesome/fontawesome-free/webfonts/*',
-  faviconPath: './favicon.ico'
+  faviconPath: './favicon.ico',
+  manifestPath: './manifest.json'
 };
 
 const distFiles = {
@@ -95,8 +96,8 @@ function copyImagesTask() {
   return src([srcFiles.imagesPath]).pipe(dest(distFiles.distImagesPath));
 }
 
-function copyFavicon() {
-  return src([srcFiles.faviconPath]).pipe(dest(distFiles.distPath));
+function copyFaviconManifest() {
+  return src([srcFiles.faviconPath, srcFiles.manifestPath]).pipe(dest(distFiles.distPath));
 }
 
 // Sass task: compiles the Scss files into CSS
@@ -253,7 +254,7 @@ exports.default = series(
     initIndexHtml,
     copyHTMLTask,
     copyImagesTask,
-    copyFavicon,
+    copyFaviconManifest,
     copyfontawesomeWebfontsTask
   ),
   cacheBustTask,
@@ -271,7 +272,7 @@ exports.build = series(
     templatePagesTask,
     copyHTMLTask,
     copyImagesTask,
-    copyFavicon,
+    copyFaviconManifest,
     copyfontawesomeWebfontsTask
   )
 );
