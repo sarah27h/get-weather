@@ -63,7 +63,10 @@ Note: In sw.js file change files paths in const assets = [] according to the env
 
 2- create new project from firebase console.
 
-3- Click on hositing in left menu and follow instructions. - Open command prompt and cd to your project. - `npm install -g firebase-tools` - `firebase login`
+3- Click on hositing in left menu and follow instructions. 
+    - Open command prompt and cd to your project. 
+    - `npm install -g firebase-tools` 
+    - `firebase login`
 note: If you log in you have to log out to get your new project add to projects list and log in again.
 
 4- initalize new project `firebase init`
@@ -76,7 +79,7 @@ note: If you log in you have to log out to get your new project add to projects 
 
 5- `firebase deploy`
 
-note: if you make changes after deploy and want to update the deolyed project use `firebase deploy`.
+note: if you make changes after deploy and want to update the depolyed project use `firebase deploy`.
 
 ## Credits
 
