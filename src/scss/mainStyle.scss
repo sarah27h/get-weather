@@ -39,17 +39,6 @@ aside {
   display: block;
 }
 
-// hide label only visually for A11y purposes
-.visually-hidden {
-  border: 0;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  overflow: hidden;
-  margin: -1px;
-  position: absolute;
-}
-
 // navbar
 .navbar {
   width: 100%;
@@ -65,7 +54,7 @@ aside {
   justify-content: space-between;
   vertical-align: middle;
   align-items: center;
-  background: #fff;
+  background: $light-color;
 
   .logo-wrapper {
     width: 100%;
@@ -126,6 +115,10 @@ main {
 
     &__img {
       width: 40px;
+    }
+
+    &__temp {
+      font-weight: 700;
     }
 
     sup {
