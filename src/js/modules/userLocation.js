@@ -25,7 +25,7 @@ const getUserLocation = () => {
     let lastResult = searchResult[searchResult.length - 1];
 
     displayWeatherData(lastResult);
-    showMessage(lastResult.timezone);
+    showMessage(lastResult.location);
 
     // if false check for user location if not
     // fetch weather for default location

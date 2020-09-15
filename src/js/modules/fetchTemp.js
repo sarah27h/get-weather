@@ -5,7 +5,7 @@ import { clearOldWeatherData } from './localStorage';
 
 let searchResult = [];
 
-const fetchTempData = (lat, lng) => {
+const fetchTempData = (lat, lng, city = 'New York', country = 'United States of America') => {
   const url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lng}&exclude=hourly,minutely&units=metric&appid=${WEATHER_API_KEY}`;
   clearWeatherData();
   try {
@@ -13,6 +13,9 @@ const fetchTempData = (lat, lng) => {
       .then(response => response.json())
       .then(result => {
         console.log(result);
+
+        // add location to result and store in localStorage
+        result.location = `${city}, ${country}`;
         if (localStorage.weatherData !== undefined) {
           searchResult = [...JSON.parse(localStorage.weatherData), result];
         } else {
@@ -24,7 +27,7 @@ const fetchTempData = (lat, lng) => {
         let lastResult = searchResult[searchResult.length - 1];
         console.log(searchResult, lastResult.current.dt);
         clearOldWeatherData();
-        showMessage(lastResult.timezone);
+        showMessage(lastResult.location);
         displayWeatherData(lastResult);
         // clear search input after submit to improve UX
         document.getElementById('autocomplete-search').value = '';

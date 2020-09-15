@@ -12,7 +12,8 @@ const dayConditions = document.getElementsByClassName('condition__text');
 
 const displayWeatherData = data => {
   // display days predict
-  const days = data.daily.slice(1, 6);
+  // extract only 4 days
+  const days = data.daily.slice(1, 5);
 
   days.forEach((dayData, i) => {
     const dayChildern = day[i].children;

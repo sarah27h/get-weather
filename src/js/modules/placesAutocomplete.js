@@ -16,11 +16,19 @@ const initAutocomplete = (() => {
     // aroundLatLngViaIP: false,
   });
   placesAutocomplete.on('change', e => {
-    fetchTempData(e.suggestion.latlng.lat, e.suggestion.latlng.lng);
+    const searchField = document.getElementById('autocomplete-search');
+    console.log(placesAutocomplete.getVal());
+    console.log(searchField.value);
+
+    fetchTempData(
+      e.suggestion.latlng.lat,
+      e.suggestion.latlng.lng,
+      e.suggestion.name,
+      e.suggestion.country
+    );
     // clear search input after submit to improve UX
     placesAutocomplete.setVal('');
     console.log(e.suggestion);
-    showMessage(`${e.suggestion.name}, ${e.suggestion.country}`);
   });
   placesAutocomplete.on('error', e => console.log(e.message));
 })();
