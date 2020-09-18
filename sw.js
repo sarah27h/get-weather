@@ -1,5 +1,5 @@
 const staticCacheName = 'weather-static-v1'; // for cache shell resources
-const dynamicCache = 'weather-dynamic-v1'; // for cache app visited pages
+const dynamicCacheName = 'weather-dynamic-v1'; // for cache app visited pages
 
 // note: for dev css, js files are '/css/mainStyle.css', '/js/all.js'
 // note: for production css, js files are '/css/mainStyle.min.css', '/js/all.min.js'
@@ -77,7 +77,7 @@ self.addEventListener('activate', evt => {
       //keys refers to cache versions
       return Promise.all(
         keys
-          .filter(key => key !== staticCacheName)
+          .filter(key => key !== staticCacheName && key !== dynamicCacheName)
           // delete old cache to get updated file
           .map(key => caches.delete(key))
       );
@@ -101,7 +101,7 @@ self.addEventListener('fetch', evt => {
         cacheRes ||
         fetch(evt.request).then(fetchRes => {
           // caches.open(dynamicCache) is async return a promise
-          return caches.open(dynamicCache).then(cache => {
+          return caches.open(dynamicCacheName).then(cache => {
             // IMPORTANT: Clone the fetchRes request. Beacuse request is a stream and
             // can only be consumed once. Since we are consuming this
             // once by cache and once by the browser for fetch, we need
