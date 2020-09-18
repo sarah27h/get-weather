@@ -12,7 +12,7 @@ const assets = [
   '/index.html',
   '/favicon.ico',
   '/manifest.json',
-  '/pages/sample.html',
+  '/pages/fallback.html',
   '/css/mainStyle.css',
   '/js/all.js',
   '/images/logo.png',
@@ -99,19 +99,27 @@ self.addEventListener('fetch', evt => {
       // fetch(evt.request) is async return a promise
       return (
         cacheRes ||
-        fetch(evt.request).then(fetchRes => {
-          // caches.open(dynamicCache) is async return a promise
-          return caches.open(dynamicCacheName).then(cache => {
-            // IMPORTANT: Clone the fetchRes request. Beacuse request is a stream and
-            // can only be consumed once. Since we are consuming this
-            // once by cache and once by the browser for fetch, we need
-            // to clone the response.
-            // cache.put(resource url, response) <key, value>
-            // like in assets array contain requests
-            cache.put(evt.request.url, fetchRes.clone());
-            return fetchRes;
-          });
-        })
+        fetch(evt.request)
+          .then(fetchRes => {
+            // caches.open(dynamicCache) is async return a promise
+            return caches.open(dynamicCacheName).then(cache => {
+              // IMPORTANT: Clone the fetchRes request. Beacuse request is a stream and
+              // can only be consumed once. Since we are consuming this
+              // once by cache and once by the browser for fetch, we need
+              // to clone the response.
+              // cache.put(resource url, response) <key, value>
+              // like in assets array contain requests
+              cache.put(evt.request.url, fetchRes.clone());
+              return fetchRes;
+            });
+          })
+          // add offline fallback page for display
+          // when user try to visit a page didn't visit when he it online
+          .catch(() => {
+            if (evt.request.url.includes('.html')) {
+              return caches.match('/pages/fallback.html');
+            }
+          })
       );
     })
   );
