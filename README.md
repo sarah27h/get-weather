@@ -90,6 +90,7 @@ note: if you make changes after deploy and want to update the depolyed project u
 - Net Ninja youtube channel.
 - wW3schools.com
 - Quicksand font from Google Fonts.
+- generate the icons for manifest file <a href="https://app-manifest.firebaseapp.com/"></a>
 
 ## License
 
