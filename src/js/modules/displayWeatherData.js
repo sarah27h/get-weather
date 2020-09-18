@@ -70,7 +70,7 @@ function getWeekdayFromUTC(UTC) {
 // clear ui from old data before fetch new
 const clearWeatherData = () => {
   Array.from(day).forEach((item, i) => {
-    console.log(day[i].children);
+    // console.log(day[i].children);
     day[i].children[0].textContent = '';
   });
 
@@ -81,7 +81,7 @@ const clearWeatherData = () => {
 
   // clear today conditions
   Array.from(dayConditions).forEach((item, i) => {
-    console.log(dayConditions[i]);
+    // console.log(dayConditions[i]);
     dayConditions[i].textContent = '';
   });
 };

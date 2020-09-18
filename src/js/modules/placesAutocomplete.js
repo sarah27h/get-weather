@@ -1,6 +1,5 @@
 import { PLACES_APP_ID, PLACES_API_KEY } from '../../../config/config';
 import fetchTempData from './fetchTemp.js';
-import showMessage from './showMessages';
 
 // const places = require('places.js');
 // import places from 'places.js';
