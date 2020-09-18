@@ -55,6 +55,17 @@ const assets = [
   'https://cdn.jsdelivr.net/npm/places.js@1.19.0'
 ];
 
+// limiting caches size
+const limitCacheSize = (cacheName, size) => {
+  caches.open(cacheName).then(cache => {
+    cache.keys().then(keys => {
+      if (keys.length > size) {
+        cache.delete(keys[0]).then(limitCacheSize(cacheName, size));
+      }
+    });
+  });
+};
+
 // install event
 self.addEventListener('install', evt => {
   console.log('sw installed');
@@ -110,6 +121,7 @@ self.addEventListener('fetch', evt => {
               // cache.put(resource url, response) <key, value>
               // like in assets array contain requests
               cache.put(evt.request.url, fetchRes.clone());
+              limitCacheSize(dynamicCacheName, 6);
               return fetchRes;
             });
           })
