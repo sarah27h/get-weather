@@ -72,10 +72,15 @@ self.addEventListener('install', evt => {
   // open a cache to hold pages we want to cache
   // at install of SW
   evt.waitUntil(
-    caches.open(staticCacheName).then(cache => {
-      console.log('caching shell assets');
-      cache.addAll(assets);
-    })
+    caches
+      .open(staticCacheName)
+      .then(cache => {
+        console.log('caching shell assets');
+        cache.addAll(assets);
+      })
+      // automate skipWaiting instead of manually click it
+      // to help in deleting old caches version
+      .then(() => self.skipWaiting())
   );
 });
 
