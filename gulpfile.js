@@ -221,6 +221,11 @@ function serveTask() {
     server: {
       baseDir: './dist/'
     }
+    // Browser-sync in mobile while local development
+    // tunnel: 'circleTest',
+    // online: true,
+    // tunnel: true,
+    // logLevel: 'debug'
   });
 
   // done();
