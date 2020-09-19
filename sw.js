@@ -78,7 +78,7 @@ self.addEventListener('install', evt => {
         console.log('caching shell assets');
         cache.addAll(assets);
       })
-      // automate skipWaiting instead of manually click it
+      // automate skipWaiting instead of manually clicking it
       // to help in deleting old caches version
       .then(() => self.skipWaiting())
   );
