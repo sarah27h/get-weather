@@ -250,6 +250,8 @@ function watchTask() {
 
   // watch changes in sw file
   watch(srcFiles.swPath, series(copySW, reload));
+  // watch changes in favicon, manifest files
+  watch(srcFiles.manifestPath, series(copyFaviconManifest, reload));
 
   // when making a change in html, js we need browser to refresh
   // watch(srcFiles.jsPath).on('change', browserSync.reload);
