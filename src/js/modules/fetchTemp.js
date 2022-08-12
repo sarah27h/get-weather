@@ -10,7 +10,10 @@ const fetchTempData = (lat, lng, city = 'New York', country = 'United States of 
   clearWeatherData();
   try {
     fetch(url)
-      .then(response => response.json())
+      .then(response => {
+        console.log(response);
+        return response.json();
+      })
       .then(result => {
         console.log(result);
 

@@ -18,4 +18,14 @@ const clearOldWeatherData = () => {
   console.log(lastResult);
 };
 
+// let today = new Date().toISOString().slice(0, 10);
+
+// function toDateTime(secs) {
+//   const time = new Date(1970, 0, 1); // Epoch
+//   time.setSeconds(secs);
+//   return time.toISOString().slice(0, 10);
+// }
+
+// toDateTime(1600299593)
+
 export { clearOldWeatherData };
