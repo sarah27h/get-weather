@@ -1,4 +1,4 @@
-const staticCacheName = 'weather-static-v1'; // for cache shell resources
+const staticCacheName = 'weather-static-v2'; // for cache shell resources
 const dynamicCacheName = 'weather-dynamic-v1'; // for cache app visited pages
 
 // note: for dev css, js files are '/css/mainStyle.css', '/js/all.js'
@@ -80,6 +80,7 @@ self.addEventListener('install', evt => {
       })
       // automate skipWaiting instead of manually clicking it
       // to help in deleting old caches version
+      // with delete in the activate event handler
       .then(() => self.skipWaiting())
   );
 });
